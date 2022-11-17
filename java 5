@@ -1,0 +1,42 @@
+import java.util.*; public class Main {  	public static void main(String[] args){ 
+ 	 	Scanner input = new Scanner(System.in); 
+ 	 	List<Integer> cardValue = new ArrayList<Integer>(); 
+ 	 	HashMap<String, List<Integer>> mp = new HashMap<>(); 
+ 	 	HashMap<String, Integer> firstEntry = new HashMap<>(); 
+  	 	int totalNoOfCards, value; 
+ 	 	System.out.println("\nEnter Number Of Cards : ");  	 	totalNoOfCards = input.nextInt(); 
+ 	 	String cardType; 
+   for(int index = 1; index <= totalNoOfCards; index++){ 
+ 	 	 	System.out.print("\nEnter Card Type of Card " + index + " : "); 
+ 	 	 	cardType = input.next(); 
+ 	 	 	System.out.print("Enter Value of Card " + index + " : "); 
+ 	 	 	value = input.nextInt(); 
+  	 	 	if(mp.containsKey(cardType)){  	 	 	 	if(cardValue.contains(value)){ 
+     System.out.println("No same card type have same value.\nProcess terminated."); 
+ 	System.exit(0); 
+ 	 	 	 	} 
+ 	 	 	 	cardValue = mp.get(cardType);  	 	 	 	cardValue.add(value); 
+ 	 	 	}else{ 
+ 	 	 	 	cardValue = new ArrayList<Integer>();  	 	 	 	firstEntry.put(cardType,value);  	 	 	 	cardValue.add(value);  	 	 	 	mp.put(cardType, cardValue); 
+ 	 	 	} 
+ 	 	} 
+ 	 	System.out.println(); 
+  	 	int noOfSameCard=0,sumOfSameCard=0;  	 	for(Map.Entry getData : mp.entrySet()){ 
+ 	 	 	System.out.println("\nCards with '" + getData.getKey() + "' Symbol : "); 
+   ArrayList<Integer> symbolArray = (ArrayList<Integer>) getData.getValue(); 
+ 	 	 	Iterator itr= symbolArray.iterator();  	 	 	while(itr.hasNext()){ 
+ 	 	 	 	noOfSameCard++; 
+ 	 	 	 	int num = (int) itr.next(); 
+ 	 	 	 	sumOfSameCard += num; 
+ 	 	 	} 
+ 
+ 	 	 	System.out.println("Number of Cards : " + noOfSameCard);    System.out.println("Sum of Values of Card Type '"+getData.getKey()+"' is: "+ sumOfSameCard); 
+ 	 	 	sumOfSameCard = 0;  	 	 	noOfSameCard = 0; 
+ 	 	} 
+ 
+ 	 	System.out.println(""); 
+ 	 	System.out.println("First Entry of Each Card Type.");  	 	for(Map.Entry getData : firstEntry.entrySet()){ 
+ 	 	 	System.out.println(getData.getKey() + " -> "+getData.getValue()); 
+ 	 	} 
+ 	} 
+}

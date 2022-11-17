@@ -1,0 +1,93 @@
+import java.io.File; import java.io.FileWriter; import java.io.IOException; import java.util.Scanner; 
+ class Employee{  	int id;  	String name;  	int age;  	int Salary; 
+ public Employee(int id, String name, int age, int salary) { 
+ 	 	this.id = id;  	 	this.name = name;  	 	this.age = age;  	 	Salary = salary; 
+ 	} 
+ 	@Override 
+ 	public String toString() {  	 	return "Employee [id=" + id + ", name=" + name + ", age=" + age + ", Salary=" + Salary + 
+"]"+"\n"; 
+ 	 	 
+
+} 
+public void add_employee(String string) 
+{ 
+FileWriter fw=null;  
+
+	try 
+ 	 	{ 
+ 	 	 	 fw=new 
+FileWriter("employeedata.txt",true); 
+ 	 	 	 fw.write(string); 
+    System.out.println("employee added successfully."); 
+ 	 	 	 fw.close(); 
+ 
+ 	 	} 
+ 	 	catch(IOException ioe) 
+ 	 	{ 
+   System.out.println("something went wrong."); 
+ 	 	 	ioe.printStackTrace(); 
+ 	 	} 
+ 	} 
+ 	 
+} 
+public class Main { public static void main(String[] args) {  	Scanner sc =new Scanner(System.in); 
+ 	File file=new File("employeedata.txt"); 
+ 
+ 	try { 
+  if(file.exists()) {System.out.println("file exists.");} 
+  else { 
+ 	 	 	file.createNewFile(); 
+	 	} 
+}catch(IOException e) { 
+System.out.println("unable to create file."); 
+} 
+ 
+ 	boolean loop=true; 
+ 	while(loop) 
+ 	{ 
+ 	 	System.out.println("Enter your Choice:\n1.Add an employee\n2.Display All\n3.Exit"); 
+ 	 	int choice=sc.nextInt(); 
+ 
+ 	 	switch(choice) {  	 	case 1: 
+ 	 	 	int id,age,salary; 
+ 	 	 	String name; 
+   System.out.println("Enter employee id:"); 
+ 	 	 	id=sc.nextInt(); 
+ 	 	 	System.out.println("Enter employee Name:"); 
+ 	 	 	name=sc.next(); 
+ 	 	 	System.out.println("Enter employee Age:"); 
+ 	 	 	age=sc.nextInt(); 
+ 	 	 	System.out.println("Enter Salary:");  	 	 	salary=sc.nextInt(); 
+   Employee e=new Employee(id, name, age, salary); 
+ 	 	 	e.add_employee(e.toString()); 
+ 	 	 		 	 
+ 	 	break;  	case 2: 
+ 	 
+try {
+    Scanner reader=new Scanner(file); 
+ 	 	 	 	while(reader.hasNextLine()) 
+ 	 	 	 	{ 
+ 	 	 	 	 	String data=reader.nextLine(); 
+ 	 	 	 	 	System.out.println(data); 
+ 	 	 	 	 	 
+ 	 	 	 	} 
+ 	 	 	 	reader.close(); 
+ 	 	 	 	 
+ 	 	 	} catch (Exception e1) { 
+ 	 	 	 	// TODO Auto-generated catch block 
+ 	 	 	 	e1.printStackTrace(); 
+ 	 	 	} 
+ 	 	 	 
+ 	 	break; 
+ 	 	  	 	case 3: 
+ 	 	 
+ 	 	 	loop=false; 
+ 	 	 	System.out.println("Exited.."); 
+ 	 	 	break; 
+ 	 	 
+ 	 	default: 
+   System.out.println("Pls enter correct choice."); 
+ 	 	} 
+ 	} 
+	sc.close(); 
+}}

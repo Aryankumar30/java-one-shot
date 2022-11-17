@@ -1,0 +1,32 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class Main {
+public static void main(String[] args) { ArrayList<String> StringList = new ArrayList<>(); Scanner sc = new Scanner(System.in); System.out.println("-------MENU-------");
+System.out.println("1.Insert"); System.out.println("2.Delete"); System.out.println("3.Search"); System.out.println("4.Display"); System.out.println("5.Exit");
+int n = 0; while(n!=5) {
+System.out.println("Enter your Choice:"); n = sc.nextInt();
+switch (n) {
+case 1:
+System.out.println("Enter the item to be inserted."); String naam = sc.next();
+StringList.add(naam);
+break;
+case 2:
+System.out.println("Enter the item to be deleted."); String delete = sc.next();
+if (StringList.contains(delete)) {
+        StringList.remove(delete);
+System.out.println("Deleted!!"); } else {
+System.out.println("Entered item is not found."); }
+break; case 3:
+System.out.println("Enter the item to search."); String search = sc.next();
+if (StringList.contains(search)) {
+System.out.println("Item found in the array."); } else {
+System.out.println("Item not found in the array."); }
+break; case 4:
+System.out.println("Items in the arraylist are:"); for (String i : StringList) {
+System.out.print(i);
+System.out.print(" "); }
+System.out.println();
+break; case 5:
+break;
+}}}
+} 
